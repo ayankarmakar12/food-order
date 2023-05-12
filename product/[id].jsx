@@ -64,3 +64,33 @@ const Product = ({ pizza }) => {
               <span className={styles.number}>Large</span>
             </div>
           </div>
+          <h3 className={styles.choose}>Choose additional ingredients</h3>
+        <div className={styles.ingredients}>
+          {pizza.extraOptions.map((option) => (
+            <div className={styles.option} key={option._id}>
+              <input
+                type="checkbox"
+                id={option.text}
+                name={option.text}
+                className={styles.checkbox}
+                onChange={(e) => handleChange(e, option)}
+              />
+              <label htmlFor="double">{option.text}</label>
+            </div>
+          ))}
+        </div>
+        <div className={styles.add}>
+          <input
+            onChange={(e) => setQuantity(e.target.value)}
+            type="number"
+            defaultValue={1}
+            className={styles.quantity}
+          />
+          <button className={styles.button} onClick={handleClick}>
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
