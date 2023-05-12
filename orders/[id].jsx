@@ -78,3 +78,47 @@ const Order = ({ order }) => {
               />
             </div>
           </div>
+          <div className={statusClass(3)}>
+            <Image src="/img/delivered.png" width={30} height={30} alt="" />
+            <span>Delivered</span>
+            <div className={styles.checkedIcon}>
+              <Image
+                className={styles.checkedIcon}
+                src="/img/checked.png"
+                width={20}
+                height={20}
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className={styles.right}>
+        <div className={styles.wrapper}>
+          <h2 className={styles.title}>CART TOTAL</h2>
+          <div className={styles.totalText}>
+            <b className={styles.totalTextTitle}>Subtotal:</b>${order.total}
+          </div>
+          <div className={styles.totalText}>
+            <b className={styles.totalTextTitle}>Discount:</b>$0.00
+          </div>
+          <div className={styles.totalText}>
+            <b className={styles.totalTextTitle}>Total:</b>${order.total}
+          </div>
+          <button disabled className={styles.button}>
+            PAID
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const getServerSideProps = async ({ params }) => {
+  const res = await axios.get(`http://localhost:3000/api/orders/${params.id}`);
+  return {
+    props: { order: res.data },
+  };
+};
+
+export default Order;
