@@ -22,3 +22,30 @@ const OrderDetail = ({ total, createOrder }) => {
             onChange={(e) => setCustomer(e.target.value)}
           />
         </div>
+        <div className={styles.item}>
+          <label className={styles.label}>Phone Number</label>
+          <input
+            type="text"
+            placeholder="+1 234 567 89"
+            className={styles.input}
+          />
+        </div>
+        <div className={styles.item}>
+          <label className={styles.label}>Address</label>
+          <textarea
+            rows={5}
+            placeholder="Elton St. 505 NY"
+            type="text"
+            className={styles.textarea}
+            onChange={(e) => setAddress(e.target.value)}
+          />
+        </div>
+        <button className={styles.button} onClick={handleClick}>
+          Order
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default OrderDetail;
