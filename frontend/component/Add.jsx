@@ -16,3 +16,20 @@ const Add = ({ setClose }) => {
     currentPrices[index] = e.target.value;
     setPrices(currentPrices);
   };
+  const handleExtraInput = (e) => {
+    setExtra({ ...extra, [e.target.name]: e.target.value });
+  };
+
+  const handleExtra = (e) => {
+    setExtraOptions((prev) => [...prev, extra]);
+  };
+
+  const handleCreate = async () => {
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", "uploads");
+    try {
+      const uploadRes = await axios.post(
+        "https://api.cloudinary.com/v1_1/dsbyq4sj1/image/upload",
+        data
+      );
